@@ -2230,32 +2230,46 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="TagComparator"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
-    <comp lib="0" loc="(400,250)" name="AND Gate">
+    <a name="simulationFrequency" val="32.0"/>
+    <comp lib="0" loc="(660,240)" name="AND Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="11" loc="(100,150)" name="Pin">
+    <comp lib="11" loc="(360,140)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="tag_address"/>
       <a name="width" val="15"/>
     </comp>
-    <comp lib="11" loc="(100,200)" name="Pin">
+    <comp lib="11" loc="(360,190)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="tag_stored"/>
       <a name="width" val="15"/>
     </comp>
-    <comp lib="11" loc="(100,300)" name="Pin">
+    <comp lib="11" loc="(360,290)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="valid_bit"/>
     </comp>
-    <comp lib="11" loc="(500,250)" name="Pin">
+    <comp lib="11" loc="(760,240)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="hit"/>
       <a name="type" val="output"/>
     </comp>
-    <comp lib="2" loc="(250,175)" name="Comparator">
+    <comp lib="2" loc="(510,170)" name="Comparator">
       <a name="width" val="15"/>
     </comp>
+    <wire from="(360,140)" to="(440,140)"/>
+    <wire from="(360,190)" to="(440,190)"/>
+    <wire from="(360,290)" to="(590,290)"/>
+    <wire from="(440,140)" to="(440,160)"/>
+    <wire from="(440,160)" to="(470,160)"/>
+    <wire from="(440,180)" to="(440,190)"/>
+    <wire from="(440,180)" to="(470,180)"/>
+    <wire from="(510,170)" to="(590,170)"/>
+    <wire from="(590,170)" to="(590,230)"/>
+    <wire from="(590,230)" to="(630,230)"/>
+    <wire from="(590,250)" to="(590,290)"/>
+    <wire from="(590,250)" to="(630,250)"/>
+    <wire from="(660,240)" to="(760,240)"/>
   </circuit>
   <circuit name="CacheLineStorage">
     <a name="appearance" val="logisim_evolution"/>
@@ -2580,6 +2594,7 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="BlockAssembler"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="32.0"/>
     <comp lib="1" loc="(250,200)" name="Demultiplexer">
       <a name="select" val="2"/>
     </comp>
@@ -2654,6 +2669,7 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="CacheMemory"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="32.0"/>
     <comp lib="11" loc="(100,100)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="cpu_address"/>
