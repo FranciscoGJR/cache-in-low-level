@@ -2275,170 +2275,247 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="CacheLineStorage"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
-    <comp lib="11" loc="(100,100)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="write_enable"/>
-    </comp>
-    <comp lib="11" loc="(100,150)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="index"/>
-      <a name="width" val="3"/>
-    </comp>
-    <comp lib="11" loc="(100,200)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="clock"/>
-    </comp>
-    <comp lib="11" loc="(100,300)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="valid_in"/>
-    </comp>
-    <comp lib="11" loc="(100,350)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="dirty_in"/>
-    </comp>
-    <comp lib="11" loc="(100,400)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="tag_in"/>
-      <a name="width" val="15"/>
-    </comp>
-    <comp lib="11" loc="(100,500)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="word0_in"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="11" loc="(100,550)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="word1_in"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="11" loc="(100,600)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="word2_in"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="11" loc="(100,650)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="word3_in"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="11" loc="(250,350)" name="Splitter">
-      <a name="bit0" val="2"/>
-      <a name="bit10" val="1"/>
-      <a name="bit11" val="1"/>
-      <a name="bit12" val="1"/>
-      <a name="bit13" val="1"/>
-      <a name="bit14" val="1"/>
-      <a name="bit15" val="1"/>
-      <a name="bit16" val="0"/>
-      <a name="bit2" val="1"/>
-      <a name="bit3" val="1"/>
-      <a name="bit4" val="1"/>
-      <a name="bit5" val="1"/>
-      <a name="bit6" val="1"/>
-      <a name="bit7" val="1"/>
-      <a name="bit8" val="1"/>
-      <a name="bit9" val="1"/>
-      <a name="facing" val="west"/>
-      <a name="fanout" val="3"/>
-      <a name="incoming" val="17"/>
-    </comp>
-    <comp lib="11" loc="(550,350)" name="Splitter">
-      <a name="bit0" val="2"/>
-      <a name="bit10" val="1"/>
-      <a name="bit11" val="1"/>
-      <a name="bit12" val="1"/>
-      <a name="bit13" val="1"/>
-      <a name="bit14" val="1"/>
-      <a name="bit15" val="1"/>
-      <a name="bit16" val="0"/>
-      <a name="bit2" val="1"/>
-      <a name="bit3" val="1"/>
-      <a name="bit4" val="1"/>
-      <a name="bit5" val="1"/>
-      <a name="bit6" val="1"/>
-      <a name="bit7" val="1"/>
-      <a name="bit8" val="1"/>
-      <a name="bit9" val="1"/>
-      <a name="fanout" val="3"/>
-      <a name="incoming" val="17"/>
-    </comp>
-    <comp lib="11" loc="(700,300)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="valid_out"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="11" loc="(700,350)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="dirty_out"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="11" loc="(700,400)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="tag_out"/>
-      <a name="type" val="output"/>
-      <a name="width" val="15"/>
-    </comp>
-    <comp lib="11" loc="(700,500)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="word0_out"/>
-      <a name="type" val="output"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="11" loc="(700,600)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="word1_out"/>
-      <a name="type" val="output"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="11" loc="(700,700)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="word2_out"/>
-      <a name="type" val="output"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="11" loc="(700,800)" name="Pin">
+    <a name="simulationFrequency" val="32.0"/>
+    <comp lib="11" loc="(1070,1030)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="word3_out"/>
       <a name="type" val="output"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="3" loc="(400,350)" name="RAM">
-      <a name="addrWidth" val="3"/>
+    <comp lib="11" loc="(1070,730)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="dataWidth" val="17"/>
-      <a name="label" val="MetaRAM"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="word0_out"/>
+      <a name="type" val="output"/>
+      <a name="width" val="32"/>
     </comp>
-    <comp lib="3" loc="(400,500)" name="RAM">
-      <a name="addrWidth" val="3"/>
+    <comp lib="11" loc="(1070,830)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="dataWidth" val="32"/>
-      <a name="label" val="Word0_RAM"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="word1_out"/>
+      <a name="type" val="output"/>
+      <a name="width" val="32"/>
     </comp>
-    <comp lib="3" loc="(400,600)" name="RAM">
-      <a name="addrWidth" val="3"/>
+    <comp lib="11" loc="(1070,930)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="dataWidth" val="32"/>
-      <a name="label" val="Word1_RAM"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="word2_out"/>
+      <a name="type" val="output"/>
+      <a name="width" val="32"/>
     </comp>
-    <comp lib="3" loc="(400,700)" name="RAM">
-      <a name="addrWidth" val="3"/>
+    <comp lib="11" loc="(1120,320)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="dataWidth" val="32"/>
-      <a name="label" val="Word2_RAM"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="valid_out"/>
+      <a name="type" val="output"/>
     </comp>
-    <comp lib="3" loc="(400,800)" name="RAM">
+    <comp lib="11" loc="(1120,370)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="dirty_out"/>
+      <a name="type" val="output"/>
+    </comp>
+    <comp lib="11" loc="(1120,420)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="tag_out"/>
+      <a name="type" val="output"/>
+      <a name="width" val="15"/>
+    </comp>
+    <comp lib="11" loc="(190,160)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="write_enable"/>
+    </comp>
+    <comp lib="11" loc="(190,210)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="index"/>
+      <a name="width" val="3"/>
+    </comp>
+    <comp lib="11" loc="(190,260)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="clock"/>
+    </comp>
+    <comp lib="11" loc="(200,350)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="dirty_in"/>
+    </comp>
+    <comp lib="11" loc="(200,450)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="valid_in"/>
+    </comp>
+    <comp lib="11" loc="(210,410)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="tag_in"/>
+      <a name="width" val="15"/>
+    </comp>
+    <comp lib="11" loc="(230,630)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="word0_in"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="11" loc="(230,740)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="word1_in"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="11" loc="(230,840)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="word2_in"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="11" loc="(230,940)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="word3_in"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="11" loc="(360,360)" name="Splitter">
+      <a name="bit0" val="2"/>
+      <a name="bit10" val="1"/>
+      <a name="bit11" val="1"/>
+      <a name="bit12" val="1"/>
+      <a name="bit13" val="1"/>
+      <a name="bit14" val="1"/>
+      <a name="bit15" val="1"/>
+      <a name="bit16" val="0"/>
+      <a name="bit2" val="1"/>
+      <a name="bit3" val="1"/>
+      <a name="bit4" val="1"/>
+      <a name="bit5" val="1"/>
+      <a name="bit6" val="1"/>
+      <a name="bit7" val="1"/>
+      <a name="bit8" val="1"/>
+      <a name="bit9" val="1"/>
+      <a name="facing" val="west"/>
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="17"/>
+    </comp>
+    <comp lib="11" loc="(870,450)" name="Splitter">
+      <a name="bit0" val="2"/>
+      <a name="bit10" val="1"/>
+      <a name="bit11" val="1"/>
+      <a name="bit12" val="1"/>
+      <a name="bit13" val="1"/>
+      <a name="bit14" val="1"/>
+      <a name="bit15" val="1"/>
+      <a name="bit16" val="0"/>
+      <a name="bit2" val="1"/>
+      <a name="bit3" val="1"/>
+      <a name="bit4" val="1"/>
+      <a name="bit5" val="1"/>
+      <a name="bit6" val="1"/>
+      <a name="bit7" val="1"/>
+      <a name="bit8" val="1"/>
+      <a name="bit9" val="1"/>
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="17"/>
+    </comp>
+    <comp lib="3" loc="(510,1080)" name="RAM">
       <a name="addrWidth" val="3"/>
       <a name="appearance" val="classic"/>
       <a name="dataWidth" val="32"/>
       <a name="label" val="Word3_RAM"/>
     </comp>
+    <comp lib="3" loc="(510,360)" name="RAM">
+      <a name="addrWidth" val="3"/>
+      <a name="appearance" val="classic"/>
+      <a name="dataWidth" val="17"/>
+      <a name="label" val="MetaRAM"/>
+    </comp>
+    <comp lib="3" loc="(510,540)" name="RAM">
+      <a name="addrWidth" val="3"/>
+      <a name="appearance" val="classic"/>
+      <a name="dataWidth" val="32"/>
+      <a name="label" val="Word0_RAM"/>
+    </comp>
+    <comp lib="3" loc="(510,720)" name="RAM">
+      <a name="addrWidth" val="3"/>
+      <a name="appearance" val="classic"/>
+      <a name="dataWidth" val="32"/>
+      <a name="label" val="Word1_RAM"/>
+    </comp>
+    <comp lib="3" loc="(510,900)" name="RAM">
+      <a name="addrWidth" val="3"/>
+      <a name="appearance" val="classic"/>
+      <a name="dataWidth" val="32"/>
+      <a name="label" val="Word2_RAM"/>
+    </comp>
+    <wire from="(1010,1030)" to="(1010,1170)"/>
+    <wire from="(1010,1030)" to="(1070,1030)"/>
+    <wire from="(1010,630)" to="(1010,730)"/>
+    <wire from="(1010,730)" to="(1070,730)"/>
+    <wire from="(1010,810)" to="(1010,830)"/>
+    <wire from="(1010,830)" to="(1070,830)"/>
+    <wire from="(1010,930)" to="(1010,990)"/>
+    <wire from="(1010,930)" to="(1070,930)"/>
+    <wire from="(1040,320)" to="(1040,440)"/>
+    <wire from="(1040,320)" to="(1120,320)"/>
+    <wire from="(1080,370)" to="(1080,420)"/>
+    <wire from="(1080,370)" to="(1120,370)"/>
+    <wire from="(1100,420)" to="(1100,430)"/>
+    <wire from="(1100,420)" to="(1120,420)"/>
+    <wire from="(190,160)" to="(470,160)"/>
+    <wire from="(190,210)" to="(490,210)"/>
+    <wire from="(190,260)" to="(460,260)"/>
+    <wire from="(200,350)" to="(340,350)"/>
+    <wire from="(200,450)" to="(300,450)"/>
+    <wire from="(210,410)" to="(290,410)"/>
+    <wire from="(230,630)" to="(510,630)"/>
+    <wire from="(230,740)" to="(440,740)"/>
+    <wire from="(230,840)" to="(310,840)"/>
+    <wire from="(230,940)" to="(440,940)"/>
+    <wire from="(290,380)" to="(290,410)"/>
+    <wire from="(290,380)" to="(340,380)"/>
+    <wire from="(300,390)" to="(300,450)"/>
+    <wire from="(300,390)" to="(340,390)"/>
+    <wire from="(310,840)" to="(310,990)"/>
+    <wire from="(310,990)" to="(510,990)"/>
+    <wire from="(340,350)" to="(340,370)"/>
+    <wire from="(360,360)" to="(440,360)"/>
+    <wire from="(440,1170)" to="(510,1170)"/>
+    <wire from="(440,360)" to="(440,450)"/>
+    <wire from="(440,450)" to="(510,450)"/>
+    <wire from="(440,740)" to="(440,810)"/>
+    <wire from="(440,810)" to="(510,810)"/>
+    <wire from="(440,940)" to="(440,1170)"/>
+    <wire from="(460,1150)" to="(510,1150)"/>
+    <wire from="(460,260)" to="(460,430)"/>
+    <wire from="(460,430)" to="(460,610)"/>
+    <wire from="(460,430)" to="(510,430)"/>
+    <wire from="(460,610)" to="(460,790)"/>
+    <wire from="(460,610)" to="(510,610)"/>
+    <wire from="(460,790)" to="(460,970)"/>
+    <wire from="(460,790)" to="(510,790)"/>
+    <wire from="(460,970)" to="(460,1150)"/>
+    <wire from="(460,970)" to="(510,970)"/>
+    <wire from="(470,1130)" to="(510,1130)"/>
+    <wire from="(470,160)" to="(470,410)"/>
+    <wire from="(470,410)" to="(470,590)"/>
+    <wire from="(470,410)" to="(510,410)"/>
+    <wire from="(470,590)" to="(470,770)"/>
+    <wire from="(470,590)" to="(510,590)"/>
+    <wire from="(470,770)" to="(470,950)"/>
+    <wire from="(470,770)" to="(510,770)"/>
+    <wire from="(470,950)" to="(470,1130)"/>
+    <wire from="(470,950)" to="(510,950)"/>
+    <wire from="(490,1090)" to="(510,1090)"/>
+    <wire from="(490,210)" to="(490,370)"/>
+    <wire from="(490,370)" to="(490,550)"/>
+    <wire from="(490,370)" to="(510,370)"/>
+    <wire from="(490,550)" to="(490,730)"/>
+    <wire from="(490,550)" to="(510,550)"/>
+    <wire from="(490,730)" to="(490,910)"/>
+    <wire from="(490,730)" to="(510,730)"/>
+    <wire from="(490,910)" to="(490,1090)"/>
+    <wire from="(490,910)" to="(510,910)"/>
+    <wire from="(750,1170)" to="(1010,1170)"/>
+    <wire from="(750,450)" to="(870,450)"/>
+    <wire from="(750,630)" to="(1010,630)"/>
+    <wire from="(750,810)" to="(1010,810)"/>
+    <wire from="(750,990)" to="(1010,990)"/>
+    <wire from="(890,420)" to="(1080,420)"/>
+    <wire from="(890,430)" to="(1100,430)"/>
+    <wire from="(890,440)" to="(1040,440)"/>
   </circuit>
   <circuit name="WordSelector">
     <a name="appearance" val="logisim_evolution"/>
