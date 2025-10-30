@@ -1988,4 +1988,69 @@
     <wire from="(690,510)" to="(690,2480)"/>
     <wire from="(690,510)" to="(700,510)"/>
   </circuit>
+  <circuit name="AddressDecoder">
+ <a name="appearance" val="logisim_evolution"/>
+ <a name="circuit" val="AddressDecoder"/>
+ <a name="circuitnamedboxfixedsize" val="true"/>
+ 
+ <!-- Entrada: Endereço de 20 bits -->
+ <comp lib="11" loc="(100,200)" name="Pin">
+   <a name="appearance" val="classic"/>
+   <a name="label" val="address"/>
+   <a name="width" val="20"/>
+ </comp>
+ 
+ <!-- Splitter Principal: 20 bits → Tag(15) + Index(3) + Offset(2) -->
+ <comp lib="11" loc="(200,200)" name="Splitter">
+   <a name="fanout" val="3"/>
+   <a name="incoming" val="20"/>
+   <a name="bit0" val="2"/>
+   <a name="bit1" val="2"/>
+   <a name="bit2" val="1"/>
+   <a name="bit3" val="1"/>
+   <a name="bit4" val="1"/>
+   <a name="bit5" val="0"/>
+   <a name="bit6" val="0"/>
+   <a name="bit7" val="0"/>
+   <a name="bit8" val="0"/>
+   <a name="bit9" val="0"/>
+   <a name="bit10" val="0"/>
+   <a name="bit11" val="0"/>
+   <a name="bit12" val="0"/>
+   <a name="bit13" val="0"/>
+   <a name="bit14" val="0"/>
+   <a name="bit15" val="0"/>
+   <a name="bit16" val="0"/>
+   <a name="bit17" val="0"/>
+   <a name="bit18" val="0"/>
+   <a name="bit19" val="0"/>
+ </comp>
+ 
+ <!-- Saída: Tag (15 bits) -->
+ <comp lib="11" loc="(400,150)" name="Pin">
+   <a name="appearance" val="classic"/>
+   <a name="facing" val="west"/>
+   <a name="label" val="tag"/>
+   <a name="type" val="output"/>
+   <a name="width" val="15"/>
+ </comp>
+ 
+ <!-- Saída: Index (3 bits) -->
+ <comp lib="11" loc="(400,200)" name="Pin">
+   <a name="appearance" val="classic"/>
+   <a name="facing" val="west"/>
+   <a name="label" val="index"/>
+   <a name="type" val="output"/>
+   <a name="width" val="3"/>
+ </comp>
+ 
+ <!-- Saída: Offset (2 bits) -->
+ <comp lib="11" loc="(400,250)" name="Pin">
+   <a name="appearance" val="classic"/>
+   <a name="facing" val="west"/>
+   <a name="label" val="offset"/>
+   <a name="type" val="output"/>
+   <a name="width" val="2"/>
+ </comp>
+</circuit>
 </project>
