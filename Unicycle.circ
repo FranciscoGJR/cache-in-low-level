@@ -2494,4 +2494,198 @@
   <a name="width" val="32"/>
 </comp>
 </circuit>
+<circuit name="WordSelector">
+<a name="appearance" val="logisim_evolution"/>
+<a name="circuit" val="WordSelector"/>
+<a name="circuitnamedboxfixedsize" val="true"/>
+
+<!-- ========== ENTRADAS - 4 PALAVRAS SEPARADAS ========== -->
+<comp lib="11" loc="(100,150)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="word0"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(100,200)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="word1"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(100,250)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="word2"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(100,300)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="word3"/>
+  <a name="width" val="32"/>
+</comp>
+
+<!-- Entrada: Offset (seletor de palavra 0-3) -->
+<comp lib="11" loc="(100,400)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="offset"/>
+  <a name="width" val="2"/>
+</comp>
+
+<!-- ========== MULTIPLEXER 4:1 ========== -->
+<comp lib="1" loc="(400,225)" name="Multiplexer">
+  <a name="select" val="2"/>
+  <a name="width" val="32"/>
+</comp>
+
+<!-- ========== SAÍDA ========== -->
+<comp lib="11" loc="(550,225)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="word_out"/>
+  <a name="type" val="output"/>
+  <a name="width" val="32"/>
+</comp>
+</circuit>
+<circuit name="BlockTransferController">
+<a name="appearance" val="logisim_evolution"/>
+<a name="circuit" val="BlockTransferController"/>
+<a name="circuitnamedboxfixedsize" val="true"/>
+
+<!-- ========== ENTRADAS DE CONTROLE ========== -->
+<comp lib="11" loc="(100,100)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="clock"/>
+</comp>
+
+<comp lib="11" loc="(100,150)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="start_transfer"/>
+</comp>
+
+<comp lib="11" loc="(100,200)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="transfer_type"/>
+</comp>
+
+<comp lib="11" loc="(100,250)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="base_address"/>
+  <a name="width" val="20"/>
+</comp>
+
+<!-- ========== ENTRADAS - DADOS PARA ESCRITA (4 palavras) ========== -->
+<comp lib="11" loc="(100,350)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="word0_in"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(100,400)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="word1_in"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(100,450)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="word2_in"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(100,500)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="word3_in"/>
+  <a name="width" val="32"/>
+</comp>
+
+<!-- ========== CONTADOR DE PALAVRAS (0-3) ========== -->
+<comp lib="3" loc="(300,150)" name="Counter">
+  <a name="width" val="2"/>
+  <a name="max" val="0x3"/>
+  <a name="appearance" val="classic"/>
+  <a name="label" val="WordCounter"/>
+</comp>
+
+<!-- ========== COMPARADOR: counter == 3? ========== -->
+<comp lib="2" loc="(400,150)" name="Comparator">
+  <a name="width" val="2"/>
+</comp>
+
+<comp lib="11" loc="(350,170)" name="Constant">
+  <a name="value" val="0x3"/>
+  <a name="width" val="2"/>
+</comp>
+
+<!-- ========== SOMADOR: base_address + counter ========== -->
+<comp lib="2" loc="(400,250)" name="Adder">
+  <a name="width" val="20"/>
+</comp>
+
+<!-- Bit Extender para converter counter (2 bits) em 20 bits -->
+<comp lib="11" loc="(350,260)" name="Bit Extender">
+  <a name="in_width" val="2"/>
+  <a name="out_width" val="20"/>
+</comp>
+
+<!-- ========== MULTIPLEXER PARA SELECIONAR PALAVRA ========== -->
+<comp lib="1" loc="(450,400)" name="Multiplexer">
+  <a name="select" val="2"/>
+  <a name="width" val="32"/>
+</comp>
+
+<!-- ========== SAÍDAS ========== -->
+<comp lib="11" loc="(700,250)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="mem_address"/>
+  <a name="type" val="output"/>
+  <a name="width" val="20"/>
+</comp>
+
+<comp lib="11" loc="(700,320)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="mem_data_out"/>
+  <a name="type" val="output"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(700,370)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="mem_read"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(700,420)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="mem_write"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(700,150)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="transfer_done"/>
+  <a name="type" val="output"/>
+</comp>
+
+<!-- ========== LÓGICA DE CONTROLE ========== -->
+<!-- AND Gate: start_transfer AND NOT done -->
+<comp lib="0" loc="(500,150)" name="AND Gate">
+  <a name="size" val="30"/>
+  <a name="negate1" val="true"/>
+</comp>
+
+<!-- Controle de leitura/escrita baseado em transfer_type -->
+<comp lib="0" loc="(600,370)" name="AND Gate">
+  <a name="size" val="30"/>
+  <a name="negate0" val="true"/>
+</comp>
+
+<comp lib="0" loc="(600,420)" name="AND Gate">
+  <a name="size" val="30"/>
+</comp>
+</circuit>
 </project>
