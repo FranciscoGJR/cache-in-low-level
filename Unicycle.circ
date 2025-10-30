@@ -2053,4 +2053,47 @@
    <a name="width" val="2"/>
  </comp>
 </circuit>
+<circuit name="TagComparator">
+ <a name="appearance" val="logisim_evolution"/>
+ <a name="circuit" val="TagComparator"/>
+ <a name="circuitnamedboxfixedsize" val="true"/>
+ 
+ <!-- Entrada: Tag do endereço solicitado -->
+ <comp lib="11" loc="(100,150)" name="Pin">
+   <a name="appearance" val="classic"/>
+   <a name="label" val="tag_address"/>
+   <a name="width" val="15"/>
+ </comp>
+ 
+ <!-- Entrada: Tag armazenada na cache -->
+ <comp lib="11" loc="(100,200)" name="Pin">
+   <a name="appearance" val="classic"/>
+   <a name="label" val="tag_stored"/>
+   <a name="width" val="15"/>
+ </comp>
+ 
+ <!-- Entrada: Bit Valid -->
+ <comp lib="11" loc="(100,300)" name="Pin">
+   <a name="appearance" val="classic"/>
+   <a name="label" val="valid_bit"/>
+ </comp>
+ 
+ <!-- Comparador de 15 bits -->
+ <comp lib="2" loc="(250,175)" name="Comparator">
+   <a name="width" val="15"/>
+ </comp>
+ 
+ <!-- AND Gate: (tags_igual) AND (valid) -->
+ <comp lib="0" loc="(400,250)" name="AND Gate">
+   <a name="size" val="30"/>
+ </comp>
+ 
+ <!-- Saída: HIT -->
+ <comp lib="11" loc="(500,250)" name="Pin">
+   <a name="appearance" val="classic"/>
+   <a name="facing" val="west"/>
+   <a name="label" val="hit"/>
+   <a name="type" val="output"/>
+ </comp>
+</circuit>
 </project>
