@@ -1994,6 +1994,217 @@
     <wire from="(690,510)" to="(690,2480)"/>
     <wire from="(690,510)" to="(700,510)"/>
   </circuit>
+<circuit name="CacheController">
+<a name="appearance" val="logisim_evolution"/>
+<a name="circuit" val="CacheController"/>
+<a name="circuitnamedboxfixedsize" val="true"/>
+
+<!-- ========== ENTRADAS ========== -->
+<comp lib="11" loc="(100,100)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="clock"/>
+</comp>
+
+<comp lib="11" loc="(100,150)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="reset"/>
+</comp>
+
+<comp lib="11" loc="(100,200)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="cpu_read"/>
+</comp>
+
+<comp lib="11" loc="(100,250)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="cpu_write"/>
+</comp>
+
+<comp lib="11" loc="(100,300)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="cache_hit"/>
+</comp>
+
+<comp lib="11" loc="(100,350)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="cache_dirty"/>
+</comp>
+
+<comp lib="11" loc="(100,400)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="mem_ready"/>
+</comp>
+
+<comp lib="11" loc="(100,450)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="word_counter"/>
+  <a name="width" val="2"/>
+</comp>
+
+<!-- ========== REGISTRADOR DE ESTADO (3 bits) ========== -->
+<comp lib="3" loc="(300,250)" name="Register">
+  <a name="appearance" val="classic"/>
+  <a name="width" val="3"/>
+  <a name="label" val="StateReg"/>
+</comp>
+
+<!-- Multiplexer para selecionar próximo estado ou reset -->
+<comp lib="1" loc="(250,240)" name="Multiplexer">
+  <a name="width" val="3"/>
+</comp>
+
+<!-- Constante para estado IDLE (000) -->
+<comp lib="11" loc="(200,230)" name="Constant">
+  <a name="value" val="0x0"/>
+  <a name="width" val="3"/>
+</comp>
+
+<!-- ========== LÓGICA DE PRÓXIMO ESTADO ========== -->
+
+<!-- Combinar estado atual + sinais de entrada para endereço da ROM -->
+<comp lib="11" loc="(400,280)" name="Splitter">
+  <a name="facing" val="west"/>
+  <a name="fanout" val="7"/>
+  <a name="incoming" val="9"/>
+  <a name="bit0" val="6"/>
+  <a name="bit1" val="5"/>
+  <a name="bit2" val="4"/>
+  <a name="bit3" val="3"/>
+  <a name="bit4" val="2"/>
+  <a name="bit5" val="1"/>
+  <a name="bit6" val="1"/>
+  <a name="bit7" val="0"/>
+  <a name="bit8" val="0"/>
+</comp>
+
+<!-- ROM de Transições: [estado, entradas] → próximo_estado -->
+<comp lib="3" loc="(500,300)" name="ROM">
+  <a name="addrWidth" val="9"/>
+  <a name="dataWidth" val="3"/>
+  <a name="appearance" val="classic"/>
+  <a name="label" val="NextStateROM"/>
+</comp>
+
+<!-- ========== DECODIFICADOR DE SAÍDAS ========== -->
+<!-- ROM de Controle: estado → sinais de controle (10 bits) -->
+<comp lib="3" loc="(500,500)" name="ROM">
+  <a name="addrWidth" val="3"/>
+  <a name="dataWidth" val="10"/>
+  <a name="appearance" val="classic"/>
+  <a name="label" val="ControlROM"/>
+</comp>
+
+<!-- Splitter para separar os sinais de controle -->
+<comp lib="11" loc="(600,500)" name="Splitter">
+  <a name="fanout" val="10"/>
+  <a name="incoming" val="10"/>
+</comp>
+
+<!-- ========== SAÍDAS ========== -->
+<comp lib="11" loc="(800,420)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="cpu_ready"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(800,450)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="mem_read"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(800,480)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="mem_write"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(800,510)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="update_cache"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(800,540)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="set_dirty"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(800,570)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="clear_dirty"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(800,600)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="set_valid"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(800,630)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="word_cnt_enable"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(800,660)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="word_cnt_reset"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(800,690)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="start_transfer"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(800,250)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="state_debug"/>
+  <a name="type" val="output"/>
+  <a name="width" val="3"/>
+</comp>
+
+<!-- ========== CONTADOR DE PALAVRAS ========== -->
+<comp lib="3" loc="(400,650)" name="Counter">
+  <a name="width" val="2"/>
+  <a name="max" val="0x3"/>
+  <a name="appearance" val="classic"/>
+  <a name="label" val="WordCounter"/>
+</comp>
+
+<!-- Comparador para detectar word_counter == 3 -->
+<comp lib="2" loc="(500,650)" name="Comparator">
+  <a name="width" val="2"/>
+</comp>
+
+<comp lib="11" loc="(450,670)" name="Constant">
+  <a name="value" val="0x3"/>
+  <a name="width" val="2"/>
+</comp>
+
+<!-- Saída: transfer_done -->
+<comp lib="11" loc="(600,650)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="transfer_done"/>
+  <a name="type" val="output"/>
+</comp>
+</circuit>
   <circuit name="AddressDecoder">
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="AddressDecoder"/>
@@ -2079,211 +2290,6 @@
     <comp lib="2" loc="(250,175)" name="Comparator">
       <a name="width" val="15"/>
     </comp>
-  </circuit>
-  <circuit name="CacheController">
-    <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="CacheController"/>
-    <a name="circuitnamedboxfixedsize" val="true"/>
-    <comp lib="11" loc="(100,100)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="clock"/>
-    </comp>
-    <comp lib="11" loc="(100,150)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="reset"/>
-    </comp>
-    <comp lib="11" loc="(100,200)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="cpu_read"/>
-    </comp>
-    <comp lib="11" loc="(100,250)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="cpu_write"/>
-    </comp>
-    <comp lib="11" loc="(100,300)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="cache_hit"/>
-    </comp>
-    <comp lib="11" loc="(100,350)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="cache_dirty"/>
-    </comp>
-    <comp lib="11" loc="(100,400)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="mem_ready"/>
-    </comp>
-    <comp lib="11" loc="(400,280)" name="Splitter">
-      <a name="facing" val="west"/>
-      <a name="fanout" val="6"/>
-      <a name="incoming" val="6"/>
-    </comp>
-    <comp lib="11" loc="(600,500)" name="Splitter">
-      <a name="fanout" val="8"/>
-      <a name="incoming" val="8"/>
-    </comp>
-    <comp lib="11" loc="(800,250)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="state_debug"/>
-      <a name="type" val="output"/>
-      <a name="width" val="3"/>
-    </comp>
-    <comp lib="11" loc="(800,420)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="cpu_ready"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="11" loc="(800,450)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="mem_read"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="11" loc="(800,480)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="mem_write"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="11" loc="(800,510)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="update_cache"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="11" loc="(800,540)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="set_dirty"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="11" loc="(800,570)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="clear_dirty"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="11" loc="(800,600)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="set_valid"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="3" loc="(300,250)" name="Register">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="State_Reg"/>
-      <a name="width" val="3"/>
-    </comp>
-    <comp lib="3" loc="(400,600)" name="Counter">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="WordCounter"/>
-      <a name="max" val="0x3"/>
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="3" loc="(500,300)" name="ROM">
-      <a name="addrWidth" val="6"/>
-      <a name="appearance" val="classic"/>
-      <a name="dataWidth" val="3"/>
-      <a name="label" val="NextStateROM"/>
-    </comp>
-    <comp lib="3" loc="(500,500)" name="ROM">
-      <a name="addrWidth" val="3"/>
-      <a name="appearance" val="classic"/>
-      <a name="label" val="ControlROM"/>
-    </comp>
-  </circuit>
-  <circuit name="CacheMemory">
-    <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="CacheMemory"/>
-    <a name="circuitnamedboxfixedsize" val="true"/>
-    <comp lib="11" loc="(100,100)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="cpu_address"/>
-      <a name="width" val="20"/>
-    </comp>
-    <comp lib="11" loc="(100,150)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="cpu_write_data"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="11" loc="(100,200)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="cpu_mem_read"/>
-    </comp>
-    <comp lib="11" loc="(100,250)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="cpu_mem_write"/>
-    </comp>
-    <comp lib="11" loc="(100,400)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="clock"/>
-    </comp>
-    <comp lib="11" loc="(100,450)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="reset"/>
-    </comp>
-    <comp lib="11" loc="(100,550)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="mem_read_data"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="11" loc="(100,600)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="mem_ready"/>
-    </comp>
-    <comp lib="11" loc="(1200,150)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="cpu_read_data"/>
-      <a name="type" val="output"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="11" loc="(1200,200)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="cpu_ready"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="11" loc="(1200,400)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="mem_address"/>
-      <a name="type" val="output"/>
-      <a name="width" val="20"/>
-    </comp>
-    <comp lib="11" loc="(1200,450)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="mem_write_data"/>
-      <a name="type" val="output"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="11" loc="(1200,500)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="mem_read"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="11" loc="(1200,550)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="mem_write"/>
-      <a name="type" val="output"/>
-    </comp>
-    <comp lib="11" loc="(1200,700)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="state_debug"/>
-      <a name="type" val="output"/>
-      <a name="width" val="3"/>
-    </comp>
-    <comp lib="4" loc="(1000,700)" name="Hex Digit Display">
-      <a name="label" val="State"/>
-    </comp>
-    <comp loc="(300,100)" name="AddressDecoder"/>
-    <comp loc="(500,150)" name="TagComparator"/>
-    <comp loc="(500,500)" name="CacheController"/>
   </circuit>
   <circuit name="CacheLineStorage">
 <a name="appearance" val="logisim_evolution"/>
@@ -2778,6 +2784,147 @@
   <a name="label" val="word3_out"/>
   <a name="type" val="output"/>
   <a name="width" val="32"/>
+</comp>
+</circuit>
+<circuit name="CacheMemory">
+<a name="appearance" val="logisim_evolution"/>
+<a name="circuit" val="CacheMemory"/>
+<a name="circuitnamedboxfixedsize" val="true"/>
+
+<!-- ==================== CPU INTERFACE ==================== -->
+<comp lib="11" loc="(100,100)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="cpu_address"/>
+  <a name="width" val="20"/>
+</comp>
+
+<comp lib="11" loc="(100,150)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="cpu_write_data"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(100,200)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="cpu_mem_read"/>
+</comp>
+
+<comp lib="11" loc="(100,250)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="cpu_mem_write"/>
+</comp>
+
+<!-- ==================== CONTROL ==================== -->
+<comp lib="11" loc="(100,400)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="clock"/>
+</comp>
+
+<comp lib="11" loc="(100,450)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="reset"/>
+</comp>
+
+<!-- ==================== SUBMÓDULOS ==================== -->
+
+<!-- Address Decoder -->
+<comp loc="(300,100)" name="AddressDecoder"/>
+
+<!-- Cache Line Storage (com 4 palavras separadas) -->
+<comp loc="(500,400)" name="CacheLineStorage"/>
+
+<!-- Tag Comparator -->
+<comp loc="(500,150)" name="TagComparator"/>
+
+<!-- Word Selector (recebe 4 palavras) -->
+<comp loc="(700,200)" name="WordSelector"/>
+
+<!-- Cache Controller (FSM) -->
+<comp loc="(500,600)" name="CacheController"/>
+
+<!-- Block Transfer Controller (4 palavras) -->
+<comp loc="(700,600)" name="BlockTransferController"/>
+
+<!-- Block Assembler (saídas 4 palavras) -->
+<comp loc="(700,450)" name="BlockAssembler"/>
+
+<!-- ==================== CPU OUTPUTS ==================== -->
+<comp lib="11" loc="(1200,150)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="cpu_read_data"/>
+  <a name="type" val="output"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(1200,200)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="cpu_ready"/>
+  <a name="type" val="output"/>
+</comp>
+
+<!-- ==================== RAM INTERFACE (Palavra única) ==================== -->
+<comp lib="11" loc="(1200,500)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="mem_address"/>
+  <a name="type" val="output"/>
+  <a name="width" val="20"/>
+</comp>
+
+<comp lib="11" loc="(1200,550)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="mem_write_data"/>
+  <a name="type" val="output"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(100,700)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="mem_read_data"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(1200,600)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="mem_read"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(1200,650)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="mem_write"/>
+  <a name="type" val="output"/>
+</comp>
+
+<comp lib="11" loc="(100,750)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="mem_ready"/>
+</comp>
+
+<!-- ==================== DEBUG ==================== -->
+<comp lib="11" loc="(1200,800)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="state_debug"/>
+  <a name="type" val="output"/>
+  <a name="width" val="3"/>
+</comp>
+
+<comp lib="4" loc="(1000,800)" name="Hex Digit Display">
+  <a name="label" val="FSM_State"/>
+</comp>
+
+<comp lib="4" loc="(1000,850)" name="LED">
+  <a name="label" val="Cache_Hit"/>
+</comp>
+
+<comp lib="4" loc="(1000,900)" name="LED">
+  <a name="label" val="Cache_Dirty"/>
 </comp>
 </circuit>
 </project>
