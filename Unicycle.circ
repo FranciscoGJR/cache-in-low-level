@@ -2688,4 +2688,96 @@
   <a name="size" val="30"/>
 </comp>
 </circuit>
+<circuit name="BlockAssembler">
+<a name="appearance" val="logisim_evolution"/>
+<a name="circuit" val="BlockAssembler"/>
+<a name="circuitnamedboxfixedsize" val="true"/>
+
+<!-- ========== ENTRADAS ========== -->
+<comp lib="11" loc="(100,150)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="word_in"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(100,200)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="word_index"/>
+  <a name="width" val="2"/>
+</comp>
+
+<comp lib="11" loc="(100,250)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="write_enable"/>
+</comp>
+
+<comp lib="11" loc="(100,300)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="label" val="clock"/>
+</comp>
+
+<!-- ========== DEMULTIPLEXER 1:4 ========== -->
+<comp lib="1" loc="(250,200)" name="Demultiplexer">
+  <a name="select" val="2"/>
+  <a name="enable" val="false"/>
+</comp>
+
+<!-- ========== 4 REGISTRADORES DE 32 BITS ========== -->
+<comp lib="3" loc="(400,150)" name="Register">
+  <a name="appearance" val="classic"/>
+  <a name="width" val="32"/>
+  <a name="label" val="Word0_Reg"/>
+</comp>
+
+<comp lib="3" loc="(400,230)" name="Register">
+  <a name="appearance" val="classic"/>
+  <a name="width" val="32"/>
+  <a name="label" val="Word1_Reg"/>
+</comp>
+
+<comp lib="3" loc="(400,310)" name="Register">
+  <a name="appearance" val="classic"/>
+  <a name="width" val="32"/>
+  <a name="label" val="Word2_Reg"/>
+</comp>
+
+<comp lib="3" loc="(400,390)" name="Register">
+  <a name="appearance" val="classic"/>
+  <a name="width" val="32"/>
+  <a name="label" val="Word3_Reg"/>
+</comp>
+
+<!-- ========== SAÍDAS - 4 PALAVRAS SEPARADAS ========== -->
+<comp lib="11" loc="(700,150)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="word0_out"/>
+  <a name="type" val="output"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(700,230)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="word1_out"/>
+  <a name="type" val="output"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(700,310)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="word2_out"/>
+  <a name="type" val="output"/>
+  <a name="width" val="32"/>
+</comp>
+
+<comp lib="11" loc="(700,390)" name="Pin">
+  <a name="appearance" val="classic"/>
+  <a name="facing" val="west"/>
+  <a name="label" val="word3_out"/>
+  <a name="type" val="output"/>
+  <a name="width" val="32"/>
+</comp>
+</circuit>
 </project>
