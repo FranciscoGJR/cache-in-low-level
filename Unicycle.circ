@@ -2578,110 +2578,160 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="BlockTransferController"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
-    <comp lib="0" loc="(500,150)" name="AND Gate">
-      <a name="negate1" val="true"/>
-      <a name="size" val="30"/>
-    </comp>
-    <comp lib="0" loc="(600,370)" name="AND Gate">
+    <a name="simulationFrequency" val="32.0"/>
+    <comp lib="0" loc="(570,830)" name="AND Gate">
       <a name="negate0" val="true"/>
       <a name="size" val="30"/>
     </comp>
-    <comp lib="0" loc="(600,420)" name="AND Gate">
+    <comp lib="0" loc="(570,880)" name="AND Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(450,400)" name="Multiplexer">
+    <comp lib="0" loc="(590,160)" name="AND Gate">
+      <a name="negate1" val="true"/>
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(540,550)" name="Multiplexer">
       <a name="select" val="2"/>
+      <a name="selloc" val="tr"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="11" loc="(100,100)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="clock"/>
-    </comp>
-    <comp lib="11" loc="(100,150)" name="Pin">
+    <comp lib="11" loc="(190,170)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="start_transfer"/>
     </comp>
-    <comp lib="11" loc="(100,200)" name="Pin">
+    <comp lib="11" loc="(190,210)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="transfer_type"/>
+      <a name="label" val="clock"/>
     </comp>
-    <comp lib="11" loc="(100,250)" name="Pin">
+    <comp lib="11" loc="(190,330)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="base_address"/>
       <a name="width" val="20"/>
     </comp>
-    <comp lib="11" loc="(100,350)" name="Pin">
+    <comp lib="11" loc="(190,440)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="word0_in"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="11" loc="(100,400)" name="Pin">
+    <comp lib="11" loc="(190,540)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="word1_in"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="11" loc="(100,450)" name="Pin">
+    <comp lib="11" loc="(190,640)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="word2_in"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="11" loc="(100,500)" name="Pin">
+    <comp lib="11" loc="(190,740)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="word3_in"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="11" loc="(350,170)" name="Constant">
+    <comp lib="11" loc="(190,820)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="transfer_type"/>
+    </comp>
+    <comp lib="11" loc="(430,180)" name="Constant">
       <a name="value" val="0x3"/>
       <a name="width" val="2"/>
     </comp>
-    <comp lib="11" loc="(350,260)" name="Bit Extender">
+    <comp lib="11" loc="(470,280)" name="Bit Extender">
       <a name="in_width" val="2"/>
       <a name="out_width" val="20"/>
     </comp>
-    <comp lib="11" loc="(700,150)" name="Pin">
+    <comp lib="11" loc="(640,830)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="transfer_done"/>
+      <a name="label" val="mem_read"/>
       <a name="type" val="output"/>
     </comp>
-    <comp lib="11" loc="(700,250)" name="Pin">
+    <comp lib="11" loc="(640,880)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="mem_address"/>
+      <a name="label" val="mem_write"/>
       <a name="type" val="output"/>
-      <a name="width" val="20"/>
     </comp>
-    <comp lib="11" loc="(700,320)" name="Pin">
+    <comp lib="11" loc="(700,550)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="mem_data_out"/>
       <a name="type" val="output"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="11" loc="(700,370)" name="Pin">
+    <comp lib="11" loc="(790,160)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="mem_read"/>
+      <a name="label" val="transfer_done"/>
       <a name="type" val="output"/>
     </comp>
-    <comp lib="11" loc="(700,420)" name="Pin">
+    <comp lib="11" loc="(790,290)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="mem_write"/>
+      <a name="label" val="mem_address"/>
       <a name="type" val="output"/>
-    </comp>
-    <comp lib="2" loc="(400,150)" name="Comparator">
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="2" loc="(400,250)" name="Adder">
       <a name="width" val="20"/>
     </comp>
-    <comp lib="3" loc="(300,150)" name="Counter">
+    <comp lib="2" loc="(490,170)" name="Comparator">
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="2" loc="(590,290)" name="Adder">
+      <a name="width" val="20"/>
+    </comp>
+    <comp lib="3" loc="(390,160)" name="Counter">
       <a name="appearance" val="classic"/>
       <a name="label" val="WordCounter"/>
       <a name="max" val="0x3"/>
       <a name="width" val="2"/>
     </comp>
+    <wire from="(190,170)" to="(270,170)"/>
+    <wire from="(190,210)" to="(370,210)"/>
+    <wire from="(190,330)" to="(520,330)"/>
+    <wire from="(190,440)" to="(370,440)"/>
+    <wire from="(190,540)" to="(500,540)"/>
+    <wire from="(190,640)" to="(370,640)"/>
+    <wire from="(190,740)" to="(380,740)"/>
+    <wire from="(190,820)" to="(420,820)"/>
+    <wire from="(270,170)" to="(270,840)"/>
+    <wire from="(270,170)" to="(310,170)"/>
+    <wire from="(270,840)" to="(390,840)"/>
+    <wire from="(310,170)" to="(310,220)"/>
+    <wire from="(310,170)" to="(360,170)"/>
+    <wire from="(310,220)" to="(540,220)"/>
+    <wire from="(370,180)" to="(370,210)"/>
+    <wire from="(370,440)" to="(370,530)"/>
+    <wire from="(370,530)" to="(500,530)"/>
+    <wire from="(370,550)" to="(370,640)"/>
+    <wire from="(370,550)" to="(500,550)"/>
+    <wire from="(380,560)" to="(380,740)"/>
+    <wire from="(380,560)" to="(500,560)"/>
+    <wire from="(390,160)" to="(410,160)"/>
+    <wire from="(390,840)" to="(390,890)"/>
+    <wire from="(390,840)" to="(540,840)"/>
+    <wire from="(390,890)" to="(540,890)"/>
+    <wire from="(410,160)" to="(410,280)"/>
+    <wire from="(410,160)" to="(450,160)"/>
+    <wire from="(410,280)" to="(410,480)"/>
+    <wire from="(410,280)" to="(430,280)"/>
+    <wire from="(410,480)" to="(520,480)"/>
+    <wire from="(420,820)" to="(420,870)"/>
+    <wire from="(420,820)" to="(530,820)"/>
+    <wire from="(420,870)" to="(540,870)"/>
+    <wire from="(430,180)" to="(450,180)"/>
+    <wire from="(470,280)" to="(550,280)"/>
+    <wire from="(490,160)" to="(520,160)"/>
+    <wire from="(520,150)" to="(520,160)"/>
+    <wire from="(520,150)" to="(560,150)"/>
+    <wire from="(520,300)" to="(520,330)"/>
+    <wire from="(520,300)" to="(550,300)"/>
+    <wire from="(520,480)" to="(520,530)"/>
+    <wire from="(540,170)" to="(540,220)"/>
+    <wire from="(540,170)" to="(550,170)"/>
+    <wire from="(540,550)" to="(700,550)"/>
+    <wire from="(570,830)" to="(640,830)"/>
+    <wire from="(570,880)" to="(640,880)"/>
+    <wire from="(590,160)" to="(790,160)"/>
+    <wire from="(590,290)" to="(790,290)"/>
   </circuit>
   <circuit name="BlockAssembler">
     <a name="appearance" val="logisim_evolution"/>
