@@ -1,0 +1,79 @@
+\documentclass[a4,12pt]{article}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[portugues]{mystyle}
+\usepackage{clrscode}
+\usepackage{graphicx}
+\graphicspath{{Figuras/}}
+\bibliographystyle{ieeetr}
+
+\begin{document}
+
+\title{Hierarquia de Memória com Cache}
+\maketitle
+
+\section*{Organização do Cache}
+
+O projeto desenvolvido pelo grupo implementa um sistema de cache com \textbf{mapeamento direto} (\textit{direct-mapped cache}), estruturado para armazenar blocos de quatro palavras de 32 bits cada. O endereço de memória é decomposto em três campos: \textbf{tag}, \textbf{índice} e \textbf{offset}.
+
+O \textbf{tag} identifica se a linha armazenada corresponde ao endereço requisitado, o \textbf{índice} seleciona diretamente a linha de cache e o \textbf{offset} indica qual palavra dentro do bloco será acessada. Além dos dados, cada linha de cache armazena metadados, incluindo o \textbf{bit de validade} (\textit{valid bit}) e o \textbf{bit de sujeira} (\textit{dirty bit}), que são essenciais para a política de escrita adotada.
+
+A política de substituição utilizada é \textbf{write-back com mapeamento direto}. Nesse modelo, dados modificados permanecem no cache até que a linha seja substituída, momento em que o bit de sujeira determina se é necessário escrever o bloco de volta na memória principal.
+
+\section*{Principais Módulos Responsáveis pelo Cache}
+
+A arquitetura modular do cache é composta por:
+
+\begin{center}
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Módulo} & \textbf{Responsabilidade} \\
+\hline
+\textbf{AddressDecoder} & Decompõe o endereço em tag, índice e offset. \\
+\textbf{TagComparator} & Verifica \textit{hit/miss} comparando tag e bit de validade. \\
+\textbf{CacheLineStorage} & Armazena dados e metadados (tag, validade e sujeira) de cada linha. \\
+\textbf{WordSelector} & Seleciona a palavra correta dentro de um bloco usando o offset. \\
+\textbf{BlockAssembler} & Monta blocos a partir de palavras recebidas da memória principal. \\
+\textbf{BlockTransferController} & Coordena transferências entre cache e memória principal, incluindo escrita de volta. \\
+\textbf{CacheController} & Máquina de estados que gerencia o fluxo de controle entre CPU, cache e memória. \\
+\textbf{CacheMemory} & Integra todos os módulos e serve como interface principal entre CPU e memória. \\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Implementação dos Módulos de Controle}
+
+O controle de \textit{hit/miss} foi implementado por meio do módulo \texttt{TagComparator}, que realiza a comparação entre o tag do endereço requisitado e o tag armazenado na linha correspondente, verificando também o bit de validade. Quando ambos coincidem e o dado é válido, ocorre um \textit{hit}; caso contrário, é sinalizado um \textit{miss}.
+
+Em situações de \textit{miss}, o \texttt{CacheController} aciona o BlockTransferController, que coordena a busca de um bloco completo na memória principal. Essa busca é feita utilizando o índice e o tag para posicionar corretamente os dados na linha de cache, transferindo sequencialmente as quatro palavras que compõem o bloco. Após a transferência, o módulo \texttt{CacheLineStorage} atualiza tanto os dados quanto os metadados (tag, validade e sujeira). Caso a linha substituída esteja marcada como suja, o \texttt{BlockTransferController} realiza a escrita de volta na memória principal antes de inserir o novo bloco, garantindo a integridade dos dados.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=16cm]{flow.png}
+\caption{Fluxo de operação do cache entre CPU, módulos internos e memória principal.}
+\label{fig:cache_seq}
+\end{figure}
+
+\section*{Testes Realizados para Cada Subcircuito}
+
+Os testes foram realizados individualmente para cada módulo do cache, garantindo a verificação funcional antes da tentativa de integração.
+
+\begin{itemize}
+\item \textbf{AddressDecoder}: Foram fornecidos endereços variados e confirmada a correta extração de tag, índice e offset.
+\item \textbf{TagComparator}: Testado com casos de \textit{hit} e \textit{miss}, alterando tag e bit de validade para verificar a sinalização correta.
+\item \textbf{CacheLineStorage}: Inserção e leitura de dados e metadados, confirmando integridade e funcionamento do bit de sujeira.
+\item \textbf{WordSelector}: Validado com diferentes offsets para garantir a seleção correta da palavra.
+\item \textbf{BlockAssembler}: Testado simulando a montagem de blocos a partir de palavras sequenciais.
+\item \textbf{BlockTransferController}: Verificado em transferências com e sem escrita de volta, garantindo coerência dos dados.
+
+\item \textbf{CacheMemory}: Testado com acessos mistos de leitura e escrita, avaliando o comportamento geral do cache e a atualização adequada dos metadados.
+\end{itemize}
+
+\section*{Dificuldades de Integração}
+
+Durante o desenvolvimento, o grupo enfrentou dificuldades significativas na integração dos componentes de cache com o programa \texttt{main}. Apesar de os módulos funcionarem de forma isolada nos testes, a comunicação com a lógica principal do processador não foi concluída com sucesso.
+
+Outro desafio foi a utilização da ferramenta \textbf{Logisim-evolution}. A complexidade da interface e limitações na depuração dificultaram a análise de sinais e a identificação de erros de sincronização. Problemas como incompatibilidade de componentes, erros de conexão e dificuldade em visualizar estados internos atrasaram o progresso do trabalho.
+
+
+\end{document}
